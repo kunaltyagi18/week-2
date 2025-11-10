@@ -1,78 +1,84 @@
-# 🌿 Plant Disease Detection System
 
-A deep learning–based web application that detects plant diseases from leaf images with high accuracy.  
-This project uses a pre-trained CNN model integrated with a simple web interface for easy image upload and disease prediction.
+## 🧩 **Week 1 – Design Phase Summary**
 
----
+### 🧠 Problem Statement
 
-## 🚀 Model Setup Instructions
-
-To use this project, you must download the pre-trained model from Google Drive and place it in the `models` directory.
-
-### 🔹 Steps to Set Up the Model
-
-1. **Download the Model**
-   - Click [here](https://drive.google.com/file/d/1Ond7UzrNOfdAXWedjlZr2sDXYU6MRBuj/view?usp=sharing) to download the model file.
-
-2. **Create the Models Folder**
-   - Go to your project’s root directory.
-   - Create a folder named `models` (if it doesn’t already exist):
-     ```bash
-     mkdir models
-     ```
-
-3. **Move the Model into the Folder**
-   - Place the downloaded model file inside the `models` directory:
-     ```bash
-     mv /path/to/downloaded/model models/
-     ```
-     Replace `/path/to/downloaded/model` with your actual download path.
-
-4. **Verify the Setup**
-   - Make sure the model file is in the correct folder:
-     ```bash
-     ls models
-     ```
-     You should see the model file listed.
+Agriculture is the backbone of many economies, but farmers often face major crop losses due to plant diseases. Manual disease detection is time-consuming, error-prone, and requires expert knowledge.
+To overcome this challenge, the project aims to develop an **AI-based Plant Disease Detection System** that can automatically identify plant diseases from leaf images using **Deep Learning (CNN)** models.
 
 ---
 
-## ⚙️ Usage Instructions
+### 💡 Solution Approach
 
-1. **Specify the Model Path**
-   - Open `app.py` in your code editor.
-   - Locate this line:
-     ```python
-     tf.keras.models.load_model("")
-     ```
-   - Update it with the correct model path:
-     ```python
-     tf.keras.models.load_model("models/your_model_file.keras")
-     ```
-     Replace `your_model_file.keras` with your actual model filename.
-
-2. **Run the Application**
-   - Open a terminal in your project directory.
-   - Start the server:
-     ```bash
-     python app.py
-     ```
-
-3. **Access the Web App**
-   - Once the server is running, open the local URL shown in the terminal (e.g., `http://127.0.0.1:5000/`) in your browser.
-   - Upload a plant leaf image to detect the disease.
+An intelligent system is proposed that uses **Convolutional Neural Networks (CNNs)** to detect and classify plant diseases from leaf images.
+The system analyzes visual patterns such as color, texture, and leaf shape to determine the disease type and suggest possible treatments.
+This solution supports **early disease detection**, helping farmers take timely preventive measures.
 
 ---
 
-## 🧠 Features
+### 🗂️ Dataset Information
 
-- 🌱 Detects multiple plant diseases using a deep learning model  
-- 📸 Upload image directly from your device  
-- 📊 Displays disease name, confidence score, and care suggestions  
-- 🔁 Reset button to analyze a new image  
-- 💻 Future-ready for Streamlit or Flask integration  
+**Dataset Name:** PlantVillage Dataset
+**Source:** Kaggle (PlantVillage – Plant Disease Classification Dataset)
+**Description:** Contains over 80,000 images of healthy and diseased plant leaves across various species like tomato, potato, and maize.
+**Classes:** Includes multiple disease categories such as early blight, late blight, and leaf spot.
+**Purpose:** To train and test deep learning models for identifying and classifying plant diseases accurately.
 
 ---
 
-## 📂 Project Structure
+### 🧱 Design Activities
+
+* Selected and analyzed the PlantVillage dataset for class distribution.
+* Designed a CNN model with convolution, pooling, and dense layers.
+* Decided framework: **TensorFlow/Keras** for model training.
+* Planned preprocessing: image resizing, normalization, and data augmentation (rotation, flipping).
+* Chose **Google Colab** for training due to GPU acceleration support.
+
+✅ **Outcome:**
+Week 1 successfully completed dataset analysis, CNN architecture design, and workflow planning for model implementation.
+
+---
+
+## 💻 **Week 2 – Implementation Phase Summary**
+
+### ⚙️ Implementation Overview
+
+During Week 2, the designed CNN model was implemented and trained using the **PlantVillage dataset** on **Google Colab** with GPU support.
+The model was built using TensorFlow/Keras and trained to classify plant leaf diseases accurately.
+
+---
+
+### 🧩 Implementation Steps
+
+1. Imported and preprocessed dataset (image resizing, normalization, augmentation).
+2. Used `ImageDataGenerator` for efficient batch processing.
+3. Built the CNN model using multiple `Conv2D`, `MaxPooling2D`, `Flatten`, and `Dense` layers.
+4. Added **Dropout layers** to prevent overfitting.
+5. Compiled the model with **Adam optimizer** and **categorical crossentropy** loss.
+6. Trained the model for multiple epochs while monitoring accuracy and loss graphs.
+7. Tested the model using unseen images to verify real-time predictions.
+
+---
+
+### 📊 Results
+
+* **Training Accuracy:** 95.6%
+* **Validation Accuracy:** 92.3%
+* **Model Saved As:** `plant_disease_model.h5`
+* **Sample Prediction Output:** Tomato Leaf Blight – 97% Confidence
+* Displayed results using `matplotlib` (`plt.imshow()`).
+
+---
+
+### 🧾 Files Added to GitHub
+
+* `Plant_Disease_Week2_Implementation.ipynb` – Implementation notebook
+* `model_link.txt` – Google Drive link for trained model
+* `accuracy_loss_graph.png` – Training visualization
+* `sample_prediction.png` – Example disease detection result
+
+---
+
+✅ **Outcome:**
+Week 2 successfully completed CNN implementation and model training. The AI model achieved high accuracy in plant disease recognition and demonstrated reliable real-time predictions for agricultural use.
 
