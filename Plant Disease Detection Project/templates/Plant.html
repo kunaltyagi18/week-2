@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Disease Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Plant.css') }}" />
+</head>
+<body>
+  <nav class="navbar">
+    <h1>🌿 Plant Disease Detection</h1>
+  </nav>
+
+  <section class="main">
+    <form action="/upload/" method="POST" enctype="multipart/form-data" id="uploadForm">
+      <h2>Upload Leaf Image</h2>
+      <input type="file" name="img" id="imageInput" accept="image/*" required />
+      <div class="preview-box">
+        <img id="previewImg" src="#" alt="Preview" style="display:none;" />
+      </div>
+      <button type="submit">Detect Disease</button>
+    </form>
+
+    <div class="loader" id="loader"></div>
+
+    {% if result %}
+    <div class="result">
+      <h3>Prediction: {{ prediction['name'] }}</h3>
+      <p><strong>Cause:</strong> {{ prediction['cause'] }}</p>
+      <p><strong>Cure:</strong> {{ prediction['cure'] }}</p>
+      <div class="result-img">
+        <img src="{{ imagepath }}" alt="Uploaded Image" />
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <footer>
+    <p>© 2025 Final Year Project | Made with ❤️ by Kunal Tyagi</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/Plant.js') }}"></script>
+</body>
+</html>
