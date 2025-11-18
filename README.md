@@ -79,6 +79,134 @@ The model was built using TensorFlow/Keras and trained to classify plant leaf di
 
 ---
 
-✅ **Outcome:**
-Week 2 successfully completed CNN implementation and model training. The AI model achieved high accuracy in plant disease recognition and demonstrated reliable real-time predictions for agricultural use.
+🌿 Week 3 – Integration & Deployment Phase Summary
+🚀 Overview
 
+Week 3 focused on integrating the trained CNN model with a simple, user-friendly web application. The aim was to allow users to upload plant leaf images and get disease predictions instantly through a clean UI. The Flask backend was connected with the frontend to deliver real-time detection.
+
+🔗 System Integration
+
+The system was divided into two major parts:
+
+1️⃣ Backend (Flask Server)
+
+Loads the trained model: plant_disease_detection_model_pwp.keras
+
+Preprocesses uploaded images (resize → normalize → convert array).
+
+Passes the image to the CNN model for prediction.
+
+Returns:
+
+Predicted crop
+
+Disease name
+
+Confidence percentage
+
+2️⃣ Frontend (HTML + CSS + JavaScript)
+
+A simple and clean student-level UI was developed with:
+
+Image upload section
+
+Preview of uploaded image
+
+Result box with prediction
+
+Reset button to clear results and upload a new image
+
+The goal was to keep the design simple, responsive, and visually clean — suitable for a final-year student project.
+
+🧑‍💻 Week 3 Activities
+🔧 1. Flask Backend Development
+
+Created API endpoint: /predict
+
+Implemented image reading using PIL
+
+Added preprocessing code for:
+
+Resizing (128×128)
+
+Expanding array dimension
+
+Converting to tensor
+
+Loaded and used the CNN model for prediction
+
+Mapped predicted index → disease name
+
+Returned result in JSON format
+
+🎨 2. Frontend Integration
+
+Developed Plant.html inside /templates
+
+Created custom UI using Plant.css
+
+Wrote JavaScript (Plant.js) to:
+
+Upload leaf images
+
+Show preview
+
+Send request to Flask server using fetch()
+
+Display prediction result
+
+Reset form
+
+🧪 3. End-to-End Testing
+
+Tested the complete flow:
+
+Step	Status
+Uploading image	✅ Working
+Sending to Flask backend	✅ Working
+Receiving prediction	✅ Accurate
+Reset and new upload	✅ Working
+
+The system correctly predicted diseases such as:
+
+Tomato Early Blight
+
+Pepper Bell Bacterial Spot
+
+Potato Late Blight
+
+Healthy Leaf
+
+📊 Week 3 Results
+
+Model Test Accuracy: ⭐ 92.49%
+
+Backend Response Time: ~0.5 sec per prediction
+
+Frontend UI: Clean, responsive, and easy-to-use
+
+Deployment Mode: Local Flask server
+
+Prototype Completed: Yes
+
+The system is now capable of:
+✔ Uploading plant leaf images
+✔ Processing them using the trained CNN model
+✔ Displaying disease name + confidence
+✔ Handling multiple predictions with reset
+
+📝 Files Added in Week 3
+/templates/
+   └── Plant.html
+/static/css/
+   └── Plant.css
+/static/js/
+   └── Plant.js
+/models/
+   └── plant_disease_detection_model_pwp.keras
+app.py
+README.md (updated)
+
+🎯 Outcome – Week 3 Successfully Completed
+
+Week 3 marked the completion of full system integration, bringing together the trained AI model and the user-friendly frontend interface. The project now works as a functional Plant Disease Detection System ready for demonstration, testing, and further deployment.
