@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection - AI Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Plant.css') }}">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text">PlantCare AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section-home">
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="header-title">🌿 Plant Disease Detection</h1>
+                <p class="header-subtitle">AI-powered plant disease diagnosis using Deep Learning</p>
+            </header>
+
+            <!-- Upload Section -->
+            <div id="uploadSection" class="upload-section">
+                <div class="upload-card">
+                    <div class="upload-icon">📁</div>
+                    <h2 class="upload-title">Upload Leaf Image</h2>
+                    <p class="upload-subtitle">Supported: JPG, PNG, JPEG (max 10MB)</p>
+
+                    <div class="file-upload-area" id="uploadArea">
+                        <input type="file" id="fileInput" accept="image/*" class="file-input" />
+                        <div class="upload-placeholder">
+                            <span class="placeholder-icon">📸</span>
+                            <p>Click or Drag & Drop your image here</p>
+                        </div>
+                    </div>
+
+                    <!-- Preview -->
+                    <div id="preview" class="preview-section" style="display:none;">
+                        <img id="previewImage" class="preview-image" alt="Preview">
+                    </div>
+
+                    <div class="button-group">
+                        <button id="detectBtn" class="btn btn-primary" disabled>⚡ Detect Disease</button>
+                        <button id="resetBtn" class="btn btn-secondary" style="display:none;">🔄 Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div id="loadingSection" class="loading-section" style="display:none;">
+                <div class="spinner"></div>
+                <p class="loading-text">🔍 Analyzing plant image...</p>
+            </div>
+
+            <!-- Result Section -->
+            <div id="resultsSection" class="results-section" style="display:none;">
+                <div class="results-card">
+                    <h2 id="diseaseName" class="disease-title"></h2>
+                    <p id="confidenceScore" class="confidence-score"></p>
+
+                    <div class="results-content">
+                        <img id="resultImage" class="result-image" />
+                        <div class="results-details">
+                            <div class="detail-box">
+                                <h3>🦠 Disease:</h3>
+                                <p id="diseaseDetail"></p>
+                            </div>
+                            <div class="detail-box">
+                                <h3>🔬 Cause:</h3>
+                                <p id="causeDetail"></p>
+                            </div>
+                            <div class="detail-box">
+                                <h3>💊 Treatment:</h3>
+                                <p id="cureDetail"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div id="errorSection" class="error-section" style="display:none;">
+                <p id="errorMessage"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-about">
+        <div class="container">
+            <h2 class="section-title">About PlantCare AI</h2>
+            <p class="section-subtitle">Revolutionizing agriculture with artificial intelligence</p>
+            
+            <div class="flashcards-container">
+                <!-- Card 1 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">🎯</div>
+                    <h3 class="flashcard-title">Our Mission</h3>
+                    <p class="flashcard-text">Empowering farmers and gardeners worldwide with cutting-edge AI technology to detect and treat plant diseases early, ensuring healthier crops and better yields.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">🤖</div>
+                    <h3 class="flashcard-title">AI Technology</h3>
+                    <p class="flashcard-text">Our deep learning model is trained on thousands of plant images, achieving over 95% accuracy in detecting 39 different types of plant diseases across multiple crops.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">🌍</div>
+                    <h3 class="flashcard-title">Global Impact</h3>
+                    <p class="flashcard-text">Helping farmers reduce crop losses, minimize pesticide use, and promote sustainable agriculture practices through early disease detection and targeted treatment.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">⚡</div>
+                    <h3 class="flashcard-title">Instant Results</h3>
+                    <p class="flashcard-text">Get accurate disease diagnosis in under 3 seconds. Our AI model processes images instantly and provides detailed treatment recommendations.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">🌱</div>
+                    <h3 class="flashcard-title">Wide Coverage</h3>
+                    <p class="flashcard-text">Supports 39 different plant diseases across major crops including tomato, potato, apple, grape, corn, and many more agricultural plants.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="flashcard">
+                    <div class="flashcard-icon">📱</div>
+                    <h3 class="flashcard-title">Easy to Use</h3>
+                    <p class="flashcard-text">Simple interface designed for everyone. Just upload a photo of the affected leaf and get instant results. Works on all devices - mobile, tablet, and desktop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section-how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Simple 4-step process to detect plant diseases</p>
+
+            <div class="steps-flashcards">
+                <!-- Step 1 -->
+                <div class="step-flashcard">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📷</div>
+                    <h3 class="step-title">Capture Image</h3>
+                    <p class="step-description">Take a clear photo of the affected plant leaf using your smartphone or camera. Ensure good lighting and focus on the diseased area for best results.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-flashcard">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">⬆️</div>
+                    <h3 class="step-title">Upload Photo</h3>
+                    <p class="step-description">Upload the image through our simple interface. You can drag & drop the file or click to browse. Supports JPG, PNG formats up to 10MB.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-flashcard">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🧠</div>
+                    <h3 class="step-title">AI Analysis</h3>
+                    <p class="step-description">Our deep learning model analyzes the image in seconds, identifying disease patterns and matching them against our extensive database of plant diseases.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-flashcard">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">💊</div>
+                    <h3 class="step-title">Get Solution</h3>
+                    <p class="step-description">Receive instant results with disease name, cause, and detailed treatment recommendations. Save your plants with expert guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>🌿 PlantCare AI</h3>
+                <p>Empowering farmers with AI technology to detect and treat plant diseases early.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Disease Database</a></li>
+                    <li><a href="#">Research Papers</a></li>
+                    <li><a href="#">User Guide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-icon" title="Facebook">📘</a>
+                    <a href="#" class="social-icon" title="Twitter">🐦</a>
+                    <a href="#" class="social-icon" title="Instagram">📷</a>
+                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 PlantCare AI. All rights reserved. | Powered by Deep Learning</p>
+        </div>
+    </footer>
+
+<script src="{{ url_for('static', filename='js/Plant.js') }}"></script>
+</body>
+</html>
